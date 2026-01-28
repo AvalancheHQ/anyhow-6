@@ -1,0 +1,24 @@
+name: CodSpeed Benchmarks
+'on':
+  push:
+    branches:
+    - master
+  pull_request: null
+  workflow_dispatch: null
+permissions:
+  contents: read
+jobs:
+  benchmarks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+    - name: Build benchmarks
+      run: cargo build --benches --release
+    - name: Run benchmarks
+      uses: CodSpeedHQ/action@v3
+      with:
+        upload-url: ${{ secrets.CODSPEED_FRANCOIS_DEV_UPLOAD_URL }}
+        run: cargo codspeed run
+        token: ${{ secrets.CODSPEED_TOKEN }}

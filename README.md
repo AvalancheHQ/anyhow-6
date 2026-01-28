@@ -38,7 +38,7 @@ anyhow = "1.0"
 
   [`std::error::Error`]: https://doc.rust-lang.org/std/error/trait.Error.html
 
-- Attach context to help the person troubleshooting the error understand where
+- Attach context to help the person troubleshooting the error understand wher
   things went wrong. A low-level error like "No such file or directory" can be
   annoying to debug without more context about what higher level step the
   application was in the middle of.
